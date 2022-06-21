@@ -5,10 +5,10 @@ class Request
     lines = request.lines
     index = lines.index("\r\n")
 
-    @method, @path, = lines.first.split
+    @method, @path, _ = lines.first.split
     @path, @query = @path.split('?')
     @headers = parse_headers(lines[1...index])
-    @body = lines[(index + 1)..].join
+    @body = lines[(index + 1)..-1].join
 
     puts "<- #{@method} #{@path} #{@query}"
   end
